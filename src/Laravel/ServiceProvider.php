@@ -46,6 +46,11 @@ class ServiceProvider extends BaseServiceProvider
             $this->publishes([
                 __DIR__ . '/../../config/jasper-cli-bridge.php' => config_path('jasper-cli-bridge.php'),
             ], 'jasper-config');
+
+            // Register commands
+            $this->commands([
+                JasperBuildCommand::class,
+            ]);
         }
     }
 

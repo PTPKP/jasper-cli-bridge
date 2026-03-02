@@ -58,13 +58,18 @@ echo "PDF created: $pdf\n";
 php artisan vendor:publish --tag=jasper-config
 ```
 
-### 2. Configure (.env)
+### 2. Build JAR (One-time setup)
+```bash
+php artisan jasper:build
+```
+
+### 3. Configure (.env)
 ```env
 JASPER_CLI_TEMPLATES_PATH=/app/storage/jasper/templates
 JASPER_CLI_OUTPUT_PATH=/app/storage/jasper/reports
 ```
 
-### 3. Use Facade
+### 4. Use Facade
 ```php
 use PTPKP\JasperCliBridge\Laravel\Facade as Jasper;
 
@@ -76,7 +81,7 @@ return response()->download($pdf, 'invoice.pdf')
     ->deleteFileAfterSend(true);
 ```
 
-### 4. Use in Controller
+### 5. Use in Controller
 ```php
 use PTPKP\JasperCliBridge\JasperReportService;
 
@@ -160,6 +165,10 @@ java -version  # Check if installed
 
 ### JAR not found?
 ```bash
+# For Laravel
+php artisan jasper:build
+
+# Or manually
 cd vendor/ptpkp/jasper-cli-bridge
 mvn clean package
 ```

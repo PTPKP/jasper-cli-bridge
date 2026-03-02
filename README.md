@@ -79,7 +79,15 @@ php artisan vendor:publish --tag=jasper-config
 
 This creates `config/jasper-cli-bridge.php`.
 
-#### 2. Configure Environment Variables
+#### 2. Build the JAR File
+
+```bash
+php artisan jasper:build
+```
+
+This compiles the Java CLI tool (requires Maven and Java 17+).
+
+#### 3. Configure Environment Variables
 
 Add to your `.env` file:
 
@@ -89,7 +97,7 @@ JASPER_CLI_OUTPUT_PATH=/path/to/your/reports
 JASPER_CLI_JAVA_EXECUTABLE=java
 ```
 
-#### 3. Use the Facade
+#### 4. Use the Facade
 
 ```php
 use PTPKP\JasperCliBridge\Laravel\Facade as Jasper;
@@ -109,7 +117,7 @@ if (Jasper::templateExists('invoice')) {
 $templates = Jasper::listTemplates();
 ```
 
-#### 4. Use Dependency Injection
+#### 5. Use Dependency Injection
 
 ```php
 use PTPKP\JasperCliBridge\JasperReportService;
